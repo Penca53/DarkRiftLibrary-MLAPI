@@ -15,93 +15,188 @@ To download it you can use [NuGet](https://www.nuget.org/packages/DarkRiftLibrar
 This library is simple and immediate... It provides you a new class called SyncObject that you can derive from as parent class in your classes that need to be synced. Once you derive from it, you can override two SyncObject's methods: `SerializeOptional` and `DeserializeOptional`. As the names suggest, the first one, `SerializeOptional`, serializes the variables you want to as you were already doing with `IDarkRiftSerilizable` `Serialize` and `Deserialize`. These methods, though, needs two different parameters: the `DarkRiftWriter` to write into and the `tag` you want. The `tag` is a way to recognize different situations that happens in your program: E.g. You have a `House` class that derives from `SyncObject` and when the `tag` is `1` then you want to serialize the `width` and `height` of the `House`. If it's `2` then you want to serialize the `inhabitants` of the `House`. Here there is a little example that shows all the functionalities of the library.
 
 ```cs
-//Instance of the class to serialize
-public House House = new House();
-
-//Method that serializes only the Measurements of the House using the Tag class as tag
-public void SendHouseMeasurements()
+public class Example
 {
-    using (DarkRiftWriter _writer = DarkRiftWriter.Create())
-    {
-        _writer.Write(House, Tags.HouseMeasurements);
+    //Instance of the class to serialize
+    public House House = new House();
 
-        using (Message _message = Message.Create(Tags.HouseMeasurements, _writer))
+
+    // SERIALIZATION
+
+    // Method that serializes only the Measurements of the House using the Tags class as tag
+    public void SendHouseMeasurements()
+    {
+        using (DarkRiftWriter _writer = DarkRiftWriter.Create())
         {
-            //Send Message
+            _writer.Write(House, Tags.HouseMeasurements);
+
+            using (Message _message = Message.Create(Tags.HouseMeasurements, _writer))
+            {
+                //Send Message
+            }
+        }
+    }
+
+    // Method that serializes only the Inhabitants of the House using the Tags class as tag
+    public void SendHouseInhabitants()
+    {
+        using (DarkRiftWriter _writer = DarkRiftWriter.Create())
+        {
+            _writer.Write(House, Tags.HouseInhabitants);
+
+            using (Message _message = Message.Create(Tags.HouseInhabitants, _writer))
+            {
+                //Send Message
+            }
+        }
+    }
+
+    // Method that serializes all the variables of the House using a number as tag
+    public void SendHouseAll()
+    {
+        using (DarkRiftWriter _writer = DarkRiftWriter.Create())
+        {
+            _writer.Write(House, 2);
+
+            using (Message _message = Message.Create(2, _writer))
+            {
+                //Send Message
+            }
+        }
+    }
+
+
+
+    // DESERIALIZATION
+
+    // Receives the messages
+    public void ReceiveMessage(object sender, MessageReceivedEventArgs e)
+    {
+        if (e.Tag == Tags.HouseMeasurements)
+        {
+            ReceiveHouseMeasurements(sender, e);
+        }
+        else if (e.Tag == Tags.HouseInhabitants)
+        {
+            ReceiveHouseInhabitants(sender, e);
+        }
+        else if (e.Tag == Tags.HouseAll)
+        {
+            ReceiveHouseAll(sender, e);
+        }
+    }
+
+    // Method that deserializes only the Measurements of the House using the Message tag as tag
+    public void ReceiveHouseMeasurements(object sender, MessageReceivedEventArgs e)
+    {
+        using (Message _message = e.GetMessage())
+        {
+            using (DarkRiftReader _reader = _message.GetReader())
+            {
+                _reader.ReadSerializable<House>(e.Tag);
+            }
+        }
+    }
+
+    // Method that deserializes only the Inhabitants of the House using the Tags class as tag
+    public void ReceiveHouseInhabitants(object sender, MessageReceivedEventArgs e)
+    {
+        using (Message _message = e.GetMessage())
+        {
+            using (DarkRiftReader _reader = _message.GetReader())
+            {
+                _reader.ReadSerializable<House>(Tags.HouseInhabitants);
+            }
+        }
+    }
+
+    // Method that deserializes all the variables of the House using a number as tag
+    public void ReceiveHouseAll(object sender, MessageReceivedEventArgs e)
+    {
+        using (Message _message = e.GetMessage())
+        {
+            using (DarkRiftReader _reader = _message.GetReader())
+            {
+                _reader.ReadSerializable<House>(2);
+            }
         }
     }
 }
 
-//Method that serializes only the Inhabitants of the House using the Tag class as tag
-public void SendHouseInhabitants()
-{
-    using (DarkRiftWriter _writer = DarkRiftWriter.Create())
-    {
-        _writer.Write(House, Tags.HouseInhabitants);
 
-        using (Message _message = Message.Create(Tags.HouseInhabitants, _writer))
-        {
-            //Send Message
-        }
-    }
-}
-
-//Method that serializes all the variables of the House using a number as tag
-public void SendHouseAll()
-{
-    using (DarkRiftWriter _writer = DarkRiftWriter.Create())
-    {
-        _writer.Write(House, 2);
-
-        using (Message _message = Message.Create(2, _writer))
-        {
-            //Send Message
-        }
-    }
-}
-}
-
-
-//Class to serialize that derives from SyncObject
+// Class to serialize that derives from SyncObject
 public class House : SyncObject
 {
-public float Width;
-public float Height;
-public int Inhabitants;
+    public float Width;
+    public float Height;
+    public int Inhabitants;
 
-public override void SerializeOptional(DarkRiftWriter writer, int tag)
-{
-    //Depending on the tag, serialize something different
-    if (tag == 0)
+    // Method that serializes different variables depending on the tag
+    public override void SerializeOptional(DarkRiftWriter writer, int tag)
     {
-        writer.Write(Width);
-        writer.Write(Height);
+        if (tag == 0)
+        {
+            writer.Write(Width);
+            writer.Write(Height);
+        }
+        else if (tag == 1)
+        {
+            writer.Write(Inhabitants);
+        }
+        else if (tag == 2)
+        {
+            writer.Write(Width);
+            writer.Write(Height);
+            writer.Write(Inhabitants);
+        }
     }
-    else if (tag == 1)
+
+    // Method that deserializes different variables depending on the tag
+    public override void DeserializeOptional(DarkRiftReader reader, int tag)
     {
-        writer.Write(Inhabitants);
-    }
-    else if (tag == 2)
-    {
-        writer.Write(Width);
-        writer.Write(Height);
-        writer.Write(Inhabitants);
+        if (tag == 0)
+        {
+            Width = reader.ReadSingle();
+            Height = reader.ReadSingle();
+        }
+        else if (tag == 1)
+        {
+            Inhabitants = reader.ReadInt32();
+        }
+        else if (tag == 2)
+        {
+            Width = reader.ReadSingle();
+            Height = reader.ReadSingle();
+            Inhabitants = reader.ReadInt32();
+        }
     }
 }
-}
 
-//Basic Tags class
+// Basic Tags class
 public static class Tags
 {
-public static readonly ushort HouseMeasurements = 0;
-public static readonly ushort HouseInhabitants = 1;
-public static readonly ushort HouseAll = 2;
+    public static readonly ushort HouseMeasurements = 0;
+    public static readonly ushort HouseInhabitants = 1;
+    public static readonly ushort HouseAll = 2;
 }
 ```
 
 ## Running the tests
 
-How things work goes here.
+**Serialization**
+    -`SerializeOptional(DarkRiftWriter, int)` Method where you have to code what you want to be serialized.
+    -`Extensions`
+        -`DarkRiftWriter.Write(SyncObject, int)` Method that serializes the SyncObject using a tag.
+
+**Deserialization**
+    -`DeserializeOptional(DarkRiftReader, int)` Method where you have to code what you want to be deserialized.
+    -`Extenstions`
+        -`DarkRiftReader.ReadSerializable<SyncObject (Child class)>(DarkRiftReader, int)` Method that deserializes the reader and casts it into the class you choose.
+        -`DarkRiftReader.ReadSerializable<SyncObject (Parent class)>(DarkRiftReader, int)` Method that deserializes the reader and casts it into a SyncObject class and uses `TypeID` (which is a SyncObject field) to use the correct deserializer. After this you can cast the SyncObject to the type you want (You can use the `TypeID` to choose the correct cast).
+        
+**Extras**
+SyncObject has 2 fields: `ID` which is a unique number that starts from 1. `TypeID` which stores the ID of the child class.
+If you call the DarkRift Serializer/Deserializer, it will call also the Optional Serializer/Deserializer with tag `-1`.
 
 ## Built With
 
