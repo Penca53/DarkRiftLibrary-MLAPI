@@ -184,19 +184,19 @@ public static class Tags
 ## Running the tests
 
 **Serialization**
-    -`SerializeOptional(DarkRiftWriter, int)` Method where you have to code what you want to be serialized.
-    -`Extensions`
-        -`DarkRiftWriter.Write(SyncObject, int)` Method that serializes the SyncObject using a tag.
+  - `SerializeOptional(DarkRiftWriter, int)` Method where you have to code what you want to be serialized.
+  - *Extensions*
+    - `DarkRiftWriter.Write(SyncObject, int)` Method that serializes the SyncObject using a tag.
 
 **Deserialization**
-    -`DeserializeOptional(DarkRiftReader, int)` Method where you have to code what you want to be deserialized.
-    -`Extenstions`
-        -`DarkRiftReader.ReadSerializable<SyncObject (Child class)>(DarkRiftReader, int)` Method that deserializes the reader and casts it into the class you choose.
-        -`DarkRiftReader.ReadSerializable<SyncObject (Parent class)>(DarkRiftReader, int)` Method that deserializes the reader and casts it into a SyncObject class and uses `TypeID` (which is a SyncObject field) to use the correct deserializer. After this you can cast the SyncObject to the type you want (You can use the `TypeID` to choose the correct cast).
+ - `DeserializeOptional(DarkRiftReader, int)` Method where you have to code what you want to be deserialized.
+ - *Extenstions*
+   - `DarkRiftReader.ReadSerializable<SyncObject (Child class)>(DarkRiftReader, int)` Method that deserializes the reader and casts it into the class you choose.
+   - `DarkRiftReader.ReadSerializable<SyncObject (Parent class)>(DarkRiftReader, int)` Method that deserializes the reader and casts it into a SyncObject class and uses `TypeID` (which is a SyncObject field) to use the correct deserializer. After this you can cast the SyncObject to the type you want (You can use the `TypeID` to choose the correct cast).
         
 **Extras**
-SyncObject has 2 fields: `ID` which is a unique number that starts from 1. `TypeID` which stores the ID of the child class.
-If you call the DarkRift Serializer/Deserializer, it will call also the Optional Serializer/Deserializer with tag `-1`.
+`SyncObject` has 2 fields: `ID` which is a unique number that starts from 1. `TypeID` which stores the ID of the child class.
+If you call the DarkRift `Serializer/Deserializer`, it will call also the Optional `Serializer/Deserializer` with tag `-1`.
 
 ## Built With
 
@@ -205,7 +205,7 @@ If you call the DarkRift Serializer/Deserializer, it will call also the Optional
 
 ## License
 
-Apache-2.0.
+Apache-2.0
 
 ## Authors
 
