@@ -8,11 +8,11 @@ In this section you will learn how to setup and use the library.
 
 ### Installing
 
-To download it you can use [NuGet](https://www.nuget.org/packages/DarkRiftLibrary-MLAPI_Penca53/) or [Mediafire](http://www.mediafire.com/folder/9ch3qbqt30v4s/DarkRiftLibrary-MLAPI). Note: if you use Mediafire, you have to reference the .dll file in your project (If you're creating a C# app then you have to go in `Solution Explorer`/ Right click on `Reference`/`Add Reference`/`Browse` and search for it). If you're using Unity, then you have to create a folder called Plugins and move the .dll file to that Untiy folder.
+To download it you have to go in the GitHub's release section and download the lastest release. Then you just have to add to the **references** `DarkRiftLibrary-MLAPI.dll`: Go in `Solution Explorer`/ Right click on `Reference`/`Add Reference`/`Browse` and search for it. If you're using **Unity**, then you have to create a folder called **Plugins** and move the `DarkRiftLibrary-MLAPI.dll` file to the folder.
 
 ### How to use
 
-This library is simple and immediate... It provides you a new class called SyncObject that you can derive from as parent class in your classes that need to be synced. Once you derive from it, you can override two SyncObject's methods: `SerializeOptional` and `DeserializeOptional`. As the names suggest, the first one, `SerializeOptional`, serializes the variables you want to as you were already doing with `IDarkRiftSerilizable` `Serialize` and `Deserialize`. These methods, though, needs two different parameters: the `DarkRiftWriter` to write into and the `tag` you want. The `tag` is a way to recognize different situations that happens in your program: E.g. You have a `House` class that derives from `SyncObject` and when the `tag` is `1` then you want to serialize the `width` and `height` of the `House`. If it's `2` then you want to serialize the `inhabitants` of the `House`. Here there is a little example that shows all the functionalities of the library.
+This library is simple and immediate... It provides you a new interface called `ISync` that you can implement in your classes that need to be synced. Once you derive from it, you have to implement a property called `TypeID`, which stores the ID of the current class. It is used to unpack a received message into one specific type. Then there are 2 methods which you should already know: `Serialize` and `Deserialize`. They can be used to **serialize** and **deserialize** **all** the object. Finally there are 2 new methods called `SerializeOptional` and `DeserializeOptional`. As the name suggests, they are used to **serialize** and **deserialize** data depending on a **condition**, which is the `tag` **parameter**. You can use the `tag` to know in which situation you're in and, depending on it, you can **serialize** and **deserialize** one field instead of another. Here it is a little **example** that shows all the functionalities of the library.
 
 ```cs
 public class Example
@@ -125,7 +125,7 @@ public class Example
 
 
 // Class to serialize that derives from SyncObject
-public class House : SyncObject
+public class House : ISync
 {
     public float Width;
     public float Height;
@@ -175,32 +175,36 @@ public class House : SyncObject
 // Basic Tags class
 public static class Tags
 {
-    public static readonly ushort HouseMeasurements = 0;
-    public static readonly ushort HouseInhabitants = 1;
-    public static readonly ushort HouseAll = 2;
+    public static readonly ushort House = 0;
 }
 ```
 
-## Running the tests
+## Documentation
 
 **Serialization**
-  - `SerializeOptional(DarkRiftWriter, int)` Method where you have to code what you want to be serialized.
-  - *Extensions*
-    - `DarkRiftWriter.Write(SyncObject, int)` Method that serializes the SyncObject using a tag.
+  - `SerializeOptional(DarkRiftWriter, int)` Used to serialize data depending on the `tag` condition.
+  - *Extensions* (which call `SerializeOptional(DarkRiftWriter, int)`)
+    - `DarkRiftWriter.Write(ISync sync, bool sendTypeID = false)` Serializes `sync` using the default tag (-1) and it has the condition to send the `TypeID`.
+    - `DarkRiftWriter.Write(ISync sync, int tag, bool sendTag = false, bool sendTypeID = false)` Serializes `sync` using the `tag`, it has the condition to send the `Tag` and has the condition to send the `TypeID`.
+    - `DarkRiftWriter.Write(ISync sync, ExtraSyncData extraSyncData, int tag = -1)` Serializes `sync` using the `tag`, it has the condition **enum** `extraSyncData` where you can choose the extra data to send.
 
 **Deserialization**
- - `DeserializeOptional(DarkRiftReader, int)` Method where you have to code what you want to be deserialized.
- - *Extenstions*
-   - `DarkRiftReader.ReadSerializable<SyncObject (Child class)>(DarkRiftReader, int)` Method that deserializes the reader and casts it into the class you choose.
-   - `DarkRiftReader.ReadSerializable<SyncObject (Parent class)>(DarkRiftReader, int)` Method that deserializes the reader and casts it into a SyncObject class and uses `TypeID` (which is a SyncObject field) to use the correct deserializer. After this you can cast the SyncObject to the type you want (You can use the `TypeID` to choose the correct cast).
+ - `DeserializeOptional(DarkRiftReader, int)` Used to deserialize data depending on the `tag` condition.
+ - *Extenstions* (which call `DeserializeOptional(DarkRiftReader, int)`)
+   - `ISync ReadSerializable()` Deserializes the message into a new instance of a type written in the message (which has to implement ISync) and as tag it uses the one written in the message or -1 if there isn't (default).
+   - `T ReadSerializable<T>()` Deserializes the message into a new instance of the type given (which has to implement ISync) and as tag it uses the one written in the message or -1 if there isn't (default).
+   - `ISync ReadSerializable(int tag)` Deserializes the message into a new instance of a type written in the message (which has to implement ISync) and as tag it uses the parameter `tag`.
+    `T ReadSerializable<T>(int tag)` Deserializes the message into a new instance of a type given (which has to implement ISync) and as tag it uses the parameter `tag`.
+    
+   - `ReadSerializable(DarkRiftReader reader)` Deserializes the message and updates the given instance (which has to implement ISync) and as tag it uses the one written in the message or -1 if there isn't (default).
+   - `ReadSerializable(DarkRiftReader reader, int tag)` Deserializes the message and updates the given instance (which has to implement ISync) and as tag it uses the parameter `tag`.
         
 **Extras**
-`SyncObject` has 2 fields: `ID` which is a unique number that starts from 1. `TypeID` which stores the ID of the child class.
-If you call the DarkRift `Serializer/Deserializer`, it will call also the Optional `Serializer/Deserializer` with tag `-1`.
+`ISync` has 1 property: `TypeID` which stores the ID of the type of the class. You have to assign one unique number to each class that implements `ISync` so that when you will read a message without knowing the type to cast to, the library will use the `TypeID` written in the message to return the correct **Type**. **NOTE**: if you know the type everytime you receive a message, then you can don't use `TypeID` and choose to not send it to slightly reduce the bandwidth!
 
 ## Built With
 
-- .NET Standard 2.0
+- .NET Framework 4.7.2
 - [DarkRift 2](https://darkriftnetworking.com/DarkRift2)
 
 ## License
