@@ -1,0 +1,8 @@
+D:\Programmi\Visual Studio Projects\DarkRiftLibrary-MLAPI\DarkRiftLibrary-MLAPI\bin\Debug\DarkRiftLibrary-MLAPI.dll
+D:\Programmi\Visual Studio Projects\DarkRiftLibrary-MLAPI\DarkRiftLibrary-MLAPI\bin\Debug\DarkRiftLibrary-MLAPI.pdb
+D:\Programmi\Visual Studio Projects\DarkRiftLibrary-MLAPI\DarkRiftLibrary-MLAPI\bin\Debug\DarkRift.dll
+D:\Programmi\Visual Studio Projects\DarkRiftLibrary-MLAPI\DarkRiftLibrary-MLAPI\obj\Debug\DarkRiftLibrary-MLAPI.csprojAssemblyReference.cache
+D:\Programmi\Visual Studio Projects\DarkRiftLibrary-MLAPI\DarkRiftLibrary-MLAPI\obj\Debug\DarkRiftLibrary-MLAPI.csproj.CoreCompileInputs.cache
+D:\Programmi\Visual Studio Projects\DarkRiftLibrary-MLAPI\DarkRiftLibrary-MLAPI\obj\Debug\DarkRiftLibrary-MLAPI.csproj.CopyComplete
+D:\Programmi\Visual Studio Projects\DarkRiftLibrary-MLAPI\DarkRiftLibrary-MLAPI\obj\Debug\DarkRiftLibrary-MLAPI.dll
+D:\Programmi\Visual Studio Projects\DarkRiftLibrary-MLAPI\DarkRiftLibrary-MLAPI\obj\Debug\DarkRiftLibrary-MLAPI.pdb
