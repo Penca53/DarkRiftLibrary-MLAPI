@@ -1,0 +1,13 @@
+D:\Programmi\Visual Studio Projects\DarkRiftLibary-MLAPI-Test-Client\DarkRiftLibary-MLAPI-Test-Client\bin\Debug\DarkRiftLibary-MLAPI-Test-Client.exe.config
+D:\Programmi\Visual Studio Projects\DarkRiftLibary-MLAPI-Test-Client\DarkRiftLibary-MLAPI-Test-Client\bin\Debug\DarkRiftLibary-MLAPI-Test-Client.exe
+D:\Programmi\Visual Studio Projects\DarkRiftLibary-MLAPI-Test-Client\DarkRiftLibary-MLAPI-Test-Client\bin\Debug\DarkRiftLibary-MLAPI-Test-Client.pdb
+D:\Programmi\Visual Studio Projects\DarkRiftLibary-MLAPI-Test-Client\DarkRiftLibary-MLAPI-Test-Client\bin\Debug\DarkRift.Client.dll
+D:\Programmi\Visual Studio Projects\DarkRiftLibary-MLAPI-Test-Client\DarkRiftLibary-MLAPI-Test-Client\bin\Debug\DarkRift.dll
+D:\Programmi\Visual Studio Projects\DarkRiftLibary-MLAPI-Test-Client\DarkRiftLibary-MLAPI-Test-Client\bin\Debug\DarkRift.Client.xml
+D:\Programmi\Visual Studio Projects\DarkRiftLibary-MLAPI-Test-Client\DarkRiftLibary-MLAPI-Test-Client\obj\Debug\DarkRiftLibary-MLAPI-Test-Client.csprojAssemblyReference.cache
+D:\Programmi\Visual Studio Projects\DarkRiftLibary-MLAPI-Test-Client\DarkRiftLibary-MLAPI-Test-Client\obj\Debug\DarkRiftLibary-MLAPI-Test-Client.csproj.CoreCompileInputs.cache
+D:\Programmi\Visual Studio Projects\DarkRiftLibary-MLAPI-Test-Client\DarkRiftLibary-MLAPI-Test-Client\obj\Debug\DarkRiftLibary-MLAPI-Test-Client.csproj.CopyComplete
+D:\Programmi\Visual Studio Projects\DarkRiftLibary-MLAPI-Test-Client\DarkRiftLibary-MLAPI-Test-Client\obj\Debug\DarkRiftLibary-MLAPI-Test-Client.exe
+D:\Programmi\Visual Studio Projects\DarkRiftLibary-MLAPI-Test-Client\DarkRiftLibary-MLAPI-Test-Client\obj\Debug\DarkRiftLibary-MLAPI-Test-Client.pdb
+D:\Programmi\Visual Studio Projects\DarkRiftLibary-MLAPI-Test-Client\DarkRiftLibary-MLAPI-Test-Client\bin\Debug\DarkRiftLibrary-MLAPI.dll
+D:\Programmi\Visual Studio Projects\DarkRiftLibary-MLAPI-Test-Client\DarkRiftLibary-MLAPI-Test-Client\bin\Debug\DarkRiftLibrary-MLAPI.pdb

@@ -6,17 +6,36 @@ namespace Penca53.DarkRift.MLAPI
 {
     public static class MLAPI
     {
+        /// <summary>
+        /// Stores all the types that implements the ISync interface and needs to assign an int ID to their type (used to deserialize without knowing the type)
+        /// </summary>
         public static Dictionary<int, Type> SyncTypes = new Dictionary<int, Type>();
     }
 
     public interface ISync : IDarkRiftSerializable
     {
+        /// <summary>
+        /// ID of the type of the class that implements ISync
+        /// </summary>
         int TypeID { get; set; }
 
+        /// <summary>
+        /// Serializes data depending on the tag condition
+        /// </summary>
+        /// <param name="writer">The DarkRiftWriter to write in</param>
+        /// <param name="tag">The tag condition</param>
         void SerializeOptional(DarkRiftWriter writer, int tag);
+        /// <summary>
+        /// Deserializes data depending on the tag condition
+        /// </summary>
+        /// <param name="reader">The DarkRiftReader to read from</param>
+        /// <param name="tag">The tag condition</param>
         void DeserializeOptional(DarkRiftReader reader, int tag);
     }
 
+    /// <summary>
+    /// Specifies the extra data written in the DarkRiftWriter
+    /// </summary>
     public enum ExtraSyncData : byte
     {
         Nothing,
@@ -35,7 +54,7 @@ namespace Penca53.DarkRift.MLAPI
         /// <param name="writer">The DarRiftWriter to write in</param>
         /// <param name="sync">The ISync instance to write</param>
         /// <param name="sendTypeID">If you want to send the TypeID of the ISync instance</param>
-        public static void Write(this DarkRiftWriter writer, ISync sync, bool sendTypeID = false)
+        public static void WriteSmart(this DarkRiftWriter writer, ISync sync, bool sendTypeID = false)
         {
             if (!sendTypeID)
             {
@@ -58,7 +77,7 @@ namespace Penca53.DarkRift.MLAPI
         /// <param name="tag">The tag to use in SerializeOptional (and to send if you want)</param>
         /// <param name="sendTag">If you want to send the tag</param>
         /// <param name="sendTypeID">If you want to send the TypeID of the ISync instance</param>
-        public static void Write(this DarkRiftWriter writer, ISync sync, int tag, bool sendTag = false, bool sendTypeID = false)
+        public static void WriteSmart(this DarkRiftWriter writer, ISync sync, int tag, bool sendTag = false, bool sendTypeID = false)
         {
             if (!sendTypeID)
             {
@@ -68,7 +87,7 @@ namespace Penca53.DarkRift.MLAPI
                 }
                 else
                 {
-                    writer.Write((byte)1);
+                    writer.Write((byte)2);
                     writer.Write(tag);
                 }
             }
@@ -76,7 +95,7 @@ namespace Penca53.DarkRift.MLAPI
             {
                 if (!sendTag)
                 {
-                    writer.Write((byte)2);
+                    writer.Write((byte)1);
                     writer.Write(sync.TypeID);
                 }
                 else
@@ -97,7 +116,7 @@ namespace Penca53.DarkRift.MLAPI
         /// <param name="sync">The ISync instance to write</param>
         /// <param name="extraSyncData">The way to handle extra data to send</param>
         /// <param name="tag">The tag to use in SerializeOptional (and to send if you want)</param>
-        public static void Write(this DarkRiftWriter writer, ISync sync, ExtraSyncData extraSyncData, int tag = -1)
+        public static void WriteSmart(this DarkRiftWriter writer, ISync sync, ExtraSyncData extraSyncData, int tag = -1)
         {
             writer.Write((byte)extraSyncData);
 
@@ -127,7 +146,7 @@ namespace Penca53.DarkRift.MLAPI
         /// </summary>
         /// <param name="reader">The DarkRift reader to read from</param>
         /// <returns></returns>
-        public static ISync ReadSerializable(this DarkRiftReader reader)
+        public static ISync ReadSerializableSmart(this DarkRiftReader reader)
         {
             ExtraSyncData _extraSyncData = (ExtraSyncData)reader.ReadByte();
             ISync _syncObject = default;
@@ -164,7 +183,7 @@ namespace Penca53.DarkRift.MLAPI
         /// <typeparam name="T">The I/O type</typeparam>
         /// <param name="reader">The DarkRift reader to read from</param>
         /// <returns></returns>
-        public static T ReadSerializable<T>(this DarkRiftReader reader) where T : ISync, new()
+        public static T ReadSerializableSmart<T>(this DarkRiftReader reader) where T : ISync, new()
         {
             ExtraSyncData _extraSyncData = (ExtraSyncData)reader.ReadByte();
             T _syncObject = default;
@@ -204,7 +223,7 @@ namespace Penca53.DarkRift.MLAPI
         /// <param name="reader">The DarkRift reader to read from</param>
         /// <param name="tag">The tag to use in DeserializeOptional</param>
         /// <returns></returns>
-        public static ISync ReadSerializable(this DarkRiftReader reader, int tag)
+        public static ISync ReadSerializableSmart(this DarkRiftReader reader, int tag)
         {
             ExtraSyncData _extraSyncData = (ExtraSyncData)reader.ReadByte();
             ISync _syncObject = default;
@@ -242,7 +261,7 @@ namespace Penca53.DarkRift.MLAPI
         /// <param name="reader">The DarkRift reader to read from</param>
         /// <param name="tag">The tag to use in DeserializeOptional</param>
         /// <returns></returns>
-        public static T ReadSerializable<T>(this DarkRiftReader reader, int tag) where T : ISync, new()
+        public static T ReadSerializableSmart<T>(this DarkRiftReader reader, int tag) where T : ISync, new()
         {
             ExtraSyncData _extraSyncData = (ExtraSyncData)reader.ReadByte();
             T _syncObject = default;
@@ -284,7 +303,7 @@ namespace Penca53.DarkRift.MLAPI
         /// </summary>
         /// <param name="sync">The instance to update</param>
         /// <param name="reader">The DarkRift reader to read from</param>
-        public static void ReadSerializable(this ISync sync, DarkRiftReader reader)
+        public static void ReadSerializableSmart(this ISync sync, DarkRiftReader reader)
         {
             ExtraSyncData _extraSyncData = (ExtraSyncData)reader.ReadByte();
             int _typeID;
@@ -317,7 +336,7 @@ namespace Penca53.DarkRift.MLAPI
         /// <param name="sync"></param>
         /// <param name="reader"></param>
         /// <param name="tag"></param>
-        public static void ReadSerializable(this ISync sync, DarkRiftReader reader, int tag)
+        public static void ReadSerializableSmart(this ISync sync, DarkRiftReader reader, int tag)
         {
             ExtraSyncData _extraSyncData = (ExtraSyncData)reader.ReadByte();
             int _typeID;

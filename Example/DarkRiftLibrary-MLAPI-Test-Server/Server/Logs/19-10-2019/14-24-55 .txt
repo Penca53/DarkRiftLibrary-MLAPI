@@ -1,0 +1,71 @@
+[Trace]   DarkRiftServer        System Details:
+                                	OS: Microsoft Windows NT 6.2.9200.0
+                                	CLS Version: 4.0.30319.42000
+                                	DarkRift: 2.3.1.0 - Free
+[Trace]   PluginFactory         Created plugin 'Program'.
+[Trace]   ExtendedPluginManagerBase Plugin 'Program' has requested that DarkRift operates in thread safe mode.
+[Trace]   DarkRiftServer        Switched into thread safe mode. Expect lower performance!
+[Info]    ExtendedPluginManagerBase Loaded plugin Program version 0.0
+[Trace]   PluginFactory         Created plugin 'BichannelListener'.
+[Trace]   DefaultNetworkListener Starting bichannel listener.
+[Info]    DefaultNetworkListener Server mounted, listening on port 4296.
+[Trace]   DefaultNetworkListener Accepted TCP connection from 127.0.0.1:51217.
+[Trace]   DefaultNetworkListener Accepted UDP connection from 127.0.0.1:64622.
+[Info]    ClientManager         New client [0] connected [127.0.0.1:51217|127.0.0.1:64622].
+[Info]    ClientManager         Client [0] disconnected: ConnectionReset.
+                                 System.Net.Sockets.SocketException (0x80004005): Connessione in corso interrotta forzatamente dall'host remoto
+[Trace]   DefaultNetworkListener Accepted TCP connection from 127.0.0.1:51226.
+[Trace]   DefaultNetworkListener Accepted UDP connection from 127.0.0.1:58506.
+[Info]    ClientManager         New client [1] connected [127.0.0.1:51226|127.0.0.1:58506].
+[Info]    ClientManager         Client [1] disconnected: ConnectionReset.
+                                 System.Net.Sockets.SocketException (0x80004005): Connessione in corso interrotta forzatamente dall'host remoto
+[Trace]   DefaultNetworkListener Accepted TCP connection from 127.0.0.1:51227.
+[Trace]   DefaultNetworkListener Accepted UDP connection from 127.0.0.1:49538.
+[Info]    ClientManager         New client [2] connected [127.0.0.1:51227|127.0.0.1:49538].
+[Info]    ClientManager         Client [2] disconnected: ConnectionReset.
+                                 System.Net.Sockets.SocketException (0x80004005): Connessione in corso interrotta forzatamente dall'host remoto
+[Trace]   DefaultNetworkListener Accepted TCP connection from 127.0.0.1:51229.
+[Trace]   DefaultNetworkListener Accepted UDP connection from 127.0.0.1:58998.
+[Info]    ClientManager         New client [3] connected [127.0.0.1:51229|127.0.0.1:58998].
+[Info]    ClientManager         Client [3] disconnected: ConnectionReset.
+                                 System.Net.Sockets.SocketException (0x80004005): Connessione in corso interrotta forzatamente dall'host remoto
+[Trace]   DefaultNetworkListener Accepted TCP connection from 127.0.0.1:51265.
+[Trace]   DefaultNetworkListener Accepted UDP connection from 127.0.0.1:49216.
+[Info]    ClientManager         New client [4] connected [127.0.0.1:51265|127.0.0.1:49216].
+[Info]    ClientManager         Client [4] disconnected: ConnectionReset.
+                                 System.Net.Sockets.SocketException (0x80004005): Connessione in corso interrotta forzatamente dall'host remoto
+[Trace]   DefaultNetworkListener Accepted TCP connection from 127.0.0.1:51270.
+[Trace]   DefaultNetworkListener Accepted UDP connection from 127.0.0.1:56487.
+[Info]    ClientManager         New client [5] connected [127.0.0.1:51270|127.0.0.1:56487].
+[Info]    ClientManager         Client [5] disconnected: ConnectionReset.
+                                 System.Net.Sockets.SocketException (0x80004005): Connessione in corso interrotta forzatamente dall'host remoto
+[Trace]   DefaultNetworkListener Accepted TCP connection from 127.0.0.1:51274.
+[Trace]   DefaultNetworkListener Accepted UDP connection from 127.0.0.1:59795.
+[Info]    ClientManager         New client [6] connected [127.0.0.1:51274|127.0.0.1:59795].
+[Info]    ClientManager         Client [6] disconnected: ConnectionReset.
+                                 System.Net.Sockets.SocketException (0x80004005): Connessione in corso interrotta forzatamente dall'host remoto
+[Trace]   DefaultNetworkListener Accepted TCP connection from 127.0.0.1:51276.
+[Trace]   DefaultNetworkListener Accepted UDP connection from 127.0.0.1:53668.
+[Info]    ClientManager         New client [7] connected [127.0.0.1:51276|127.0.0.1:53668].
+[Info]    ClientManager         Client [7] disconnected: ConnectionReset.
+                                 System.Net.Sockets.SocketException (0x80004005): Connessione in corso interrotta forzatamente dall'host remoto
+[Trace]   DefaultNetworkListener Accepted TCP connection from 127.0.0.1:51337.
+[Trace]   DefaultNetworkListener Accepted UDP connection from 127.0.0.1:56096.
+[Info]    ClientManager         New client [8] connected [127.0.0.1:51337|127.0.0.1:56096].
+[Info]    ClientManager         Client [8] disconnected: ConnectionReset.
+                                 System.Net.Sockets.SocketException (0x80004005): Connessione in corso interrotta forzatamente dall'host remoto
+[Trace]   DefaultNetworkListener Accepted TCP connection from 127.0.0.1:51342.
+[Trace]   DefaultNetworkListener Accepted UDP connection from 127.0.0.1:62196.
+[Info]    ClientManager         New client [9] connected [127.0.0.1:51342|127.0.0.1:62196].
+[Info]    ClientManager         Client [9] disconnected: ConnectionReset.
+                                 System.Net.Sockets.SocketException (0x80004005): Connessione in corso interrotta forzatamente dall'host remoto
+[Trace]   DefaultNetworkListener Accepted TCP connection from 127.0.0.1:51396.
+[Trace]   DefaultNetworkListener Accepted UDP connection from 127.0.0.1:63326.
+[Info]    ClientManager         New client [10] connected [127.0.0.1:51396|127.0.0.1:63326].
+[Info]    ClientManager         Client [10] disconnected: ConnectionReset.
+                                 System.Net.Sockets.SocketException (0x80004005): Connessione in corso interrotta forzatamente dall'host remoto
+[Trace]   DefaultNetworkListener Accepted TCP connection from 127.0.0.1:51431.
+[Trace]   DefaultNetworkListener Accepted UDP connection from 127.0.0.1:53730.
+[Info]    ClientManager         New client [11] connected [127.0.0.1:51431|127.0.0.1:53730].
+[Info]    ClientManager         Client [11] disconnected: ConnectionReset.
+                                 System.Net.Sockets.SocketException (0x80004005): Connessione in corso interrotta forzatamente dall'host remoto

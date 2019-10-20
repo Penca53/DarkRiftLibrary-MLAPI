@@ -1,0 +1,11 @@
+D:\Programmi\Visual Studio Projects\DarkRiftLibrary-MLAPI-Test-Server\DarkRiftLibrary-MLAPI-Test-Server\bin\Debug\DarkRiftLibrary-MLAPI-Test-Server.dll
+D:\Programmi\Visual Studio Projects\DarkRiftLibrary-MLAPI-Test-Server\DarkRiftLibrary-MLAPI-Test-Server\bin\Debug\DarkRiftLibrary-MLAPI-Test-Server.pdb
+D:\Programmi\Visual Studio Projects\DarkRiftLibrary-MLAPI-Test-Server\DarkRiftLibrary-MLAPI-Test-Server\bin\Debug\DarkRift.dll
+D:\Programmi\Visual Studio Projects\DarkRiftLibrary-MLAPI-Test-Server\DarkRiftLibrary-MLAPI-Test-Server\bin\Debug\DarkRift.Server.dll
+D:\Programmi\Visual Studio Projects\DarkRiftLibrary-MLAPI-Test-Server\DarkRiftLibrary-MLAPI-Test-Server\obj\Debug\DarkRiftLibrary-MLAPI-Test-Server.csproj.CoreCompileInputs.cache
+D:\Programmi\Visual Studio Projects\DarkRiftLibrary-MLAPI-Test-Server\DarkRiftLibrary-MLAPI-Test-Server\obj\Debug\DarkRiftLibrary-MLAPI-Test-Server.csproj.CopyComplete
+D:\Programmi\Visual Studio Projects\DarkRiftLibrary-MLAPI-Test-Server\DarkRiftLibrary-MLAPI-Test-Server\obj\Debug\DarkRiftLibrary-MLAPI-Test-Server.dll
+D:\Programmi\Visual Studio Projects\DarkRiftLibrary-MLAPI-Test-Server\DarkRiftLibrary-MLAPI-Test-Server\obj\Debug\DarkRiftLibrary-MLAPI-Test-Server.pdb
+D:\Programmi\Visual Studio Projects\DarkRiftLibrary-MLAPI-Test-Server\DarkRiftLibrary-MLAPI-Test-Server\bin\Debug\DarkRiftLibrary-MLAPI.dll
+D:\Programmi\Visual Studio Projects\DarkRiftLibrary-MLAPI-Test-Server\DarkRiftLibrary-MLAPI-Test-Server\bin\Debug\DarkRiftLibrary-MLAPI.pdb
+D:\Programmi\Visual Studio Projects\DarkRiftLibrary-MLAPI-Test-Server\DarkRiftLibrary-MLAPI-Test-Server\obj\Debug\DarkRiftLibrary-MLAPI-Test-Server.csprojAssemblyReference.cache
